@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudyGuide.com | Seu guia de estudos</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#ffffff;
+    color:#172033;
+}
+
+header{
+    background:#ffffff;
+    border-bottom:1px solid #dce5f5;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#1769e0;
+}
+
+nav a{
+    text-decoration:none;
+    color:#172033;
+    margin-left:22px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#1769e0;
+}
+
+.hero{
+    background:linear-gradient(135deg,#f4f9ff,#e8f2ff);
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.hero h1{
+    font-size:55px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.azul{
+    color:#1769e0;
+}
+
+.hero p{
+    color:#5b6577;
+    font-size:19px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.botao{
+    background:#1769e0;
+    color:white;
+    border:none;
+    padding:15px 28px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:.3s;
+}
+
+.botao:hover{
+    background:#0d4fae;
+    transform:translateY(-2px);
+}
+
+section{
+    padding:75px 7%;
+}
+
+.titulo{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#687386;
+    max-width:700px;
+    margin:0 auto 45px;
+    line-height:1.6;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:#ffffff;
+    border:1px solid #e0e8f5;
+    border-radius:14px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(20,70,130,.06);
+}
+
+.icone{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#667085;
+    line-height:1.6;
+}
+
+.recursos{
+    background:#f7faff;
+}
+
+.escolha{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    border:1px solid #dce5f5;
+    border-radius:15px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(20,70,130,.08);
+}
+
+.campo{
+    margin-bottom:20px;
+}
+
+.campo label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+select,
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #cfd9e8;
+    border-radius:7px;
+    font-size:15px;
+}
+
+.resultado{
+    display:none;
+    margin-top:25px;
+    padding:25px;
+    background:#eef6ff;
+    border-left:5px solid #1769e0;
+    border-radius:7px;
+}
+
+.planos{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:850px;
+    margin:auto;
+}
+
+.plano{
+    border:1px solid #dce5f5;
+    border-radius:15px;
+    padding:35px;
+    text-align:center;
+}
+
+.plano.premium{
+    border:2px solid #1769e0;
+    position:relative;
+}
+
+.tag{
+    background:#1769e0;
+    color:white;
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:12px;
+    display:inline-block;
+    margin-bottom:15px;
+}
+
+.plano h3{
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.preco{
+    font-size:38px;
+    color:#1769e0;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.plano ul{
+    list-style:none;
+    margin-bottom:25px;
+    line-height:2;
+    text-align:left;
+}
+
+.plano li::before{
+    content:"✓ ";
+    color:#1769e0;
+    font-weight:bold;
+}
+
+.quiz{
+    background:#1769e0;
+    color:white;
+    text-align:center;
+}
+
+.quiz .subtitulo{
+    color:#dbeaff;
+}
+
+.quiz-box{
+    background:white;
+    color:#172033;
+    max-width:700px;
+    margin:auto;
+    padding:35px;
+    border-radius:15px;
+    text-align:left;
+}
+
+.opcao{
+    display:block;
+    width:100%;
+    padding:13px;
+    margin:10px 0;
+    background:#f4f7fb;
+    border:1px solid #dce5f5;
+    border-radius:7px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.opcao:hover{
+    background:#e7f1ff;
+}
+
+#resultadoQuiz{
+    margin-top:20px;
+    font-weight:bold;
+}
+
+footer{
+    background:#101828;
+    color:#aeb8c7;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer strong{
+    color:white;
+}
+
+@media(max-width:750px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav a{
+        margin:0 7px;
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .cards,
+    .planos{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        StudyGuide
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#planos">Planos</a>
+    </nav>
+
+</header>
+
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <h1>
+            Estude melhor.<br>
+            <span class="azul">Aprenda de verdade.</span>
+        </h1>
+
+        <p>
+            Uma plataforma criada para ajudar estudantes a organizar
+            seus estudos, praticar conteúdos, revisar para provas e
+            aprender de maneira mais inteligente.
+        </p>
+
+        <a href="#planos" class="botao">
+            COMEÇAR AGORA
+        </a>
+
+    </div>
+
+</section>
+
+
+<section id="recursos" class="recursos">
+
+    <h2 class="titulo">
+        Tudo para seus estudos
+    </h2>
+
+    <p class="subtitulo">
+        Ferramentas para diferentes matérias, séries e necessidades.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icone">🤖</div>
+            <h3>IA de estudos</h3>
+            <p>
+                Faça perguntas e receba explicações para compreender
+                melhor os conteúdos.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icone">📝</div>
+            <h3>Quizzes</h3>
+            <p>
+                Pratique através de perguntas e descubra quais assuntos
+                precisam de mais revisão.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icone">🗓️</div>
+            <h3>Cronograma</h3>
+            <p>
+                Organize seu tempo e distribua suas matérias durante
+                a semana.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icone">➗</div>
+            <h3>Matemática</h3>
+            <p>
+                Pratique contas, problemas, equações e outros conteúdos
+                matemáticos.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icone">✍️</div>
+            <h3>Redação</h3>
+            <p>
+                Treine estrutura, argumentação, organização das ideias
+                e escrita.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icone">🧠</div>
+            <h3>Memória e raciocínio</h3>
+            <p>
+                Atividades recreativas para exercitar memória,
+                concentração e raciocínio.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <h2 class="titulo">
+        Monte seu plano de estudos
+    </h2>
+
+    <p class="subtitulo">
+        Escolha sua série e o objetivo que deseja trabalhar.
+    </p>
+
+
+    <div class="escolha">
+
+        <div class="campo">
+
+            <label>
+                Sua série
+            </label>
+
+            <select id="serie">
+
+                <option value="">
+                    Escolha sua série
+                </option>
+
+                <option>
+                    7º ano do Ensino Fundamental
+                </option>
+
+                <option>
+                    8º ano do Ensino Fundamental
+                </option>
+
+                <option>
+                    9º ano do Ensino Fundamental
+                </option>
+
+                <option>
+                    1º ano do Ensino Médio
+                </option>
+
+                <option>
+                    2º ano do Ensino Médio
+                </option>
+
+                <option>
+                    3º ano do Ensino Médio
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Principal objetivo
+            </label>
+
+            <select id="objetivo">
+
+                <option value="">
+                    Escolha seu objetivo
+                </option>
+
+                <option>
+                    Melhorar minhas notas
+                </option>
+
+                <option>
+                    Preparar para uma prova
+                </option>
+
+                <option>
+                    Revisar matérias
+                </option>
+
+                <option>
+                    Criar uma rotina de estudos
+                </option>
+
+                <option>
+                    Melhorar em matemática
+                </option>
+
+                <option>
+                    Treinar redação
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button class="botao" onclick="montarPlano()">
+            MONTAR MEU PLANO
+        </button>
+
+
+        <div class="resultado" id="resultadoPlano">
+
+            <h3>
+                📚 Seu plano inicial
+            </h3>
+
+            <p id="textoPlano"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="quiz" id="quiz">
+
+    <h2 class="titulo">
+        Teste seus conhecimentos
+    </h2>
+
+    <p class="subtitulo">
+        Responda uma questão rápida de matemática.
+    </p>
+
+
+    <div class="quiz-box">
+
+        <h3>
+            Quanto é 8 × 7?
+        </h3>
+
+
+        <button class="opcao" onclick="responderQuiz(54)">
+            A) 54
+        </button>
+
+        <button class="opcao" onclick="responderQuiz(56)">
+            B) 56
+        </button>
+
+        <button class="opcao" onclick="responderQuiz(64)">
+            C) 64
+        </button>
+
+        <button class="opcao" onclick="responderQuiz(48)">
+            D) 48
+        </button>
+
+
+        <div id="resultadoQuiz"></div>
+
+    </div>
+
+</section>
+
+
+<section id="planos">
+
+    <h2 class="titulo">
+        Escolha seu plano
+    </h2>
+
+    <p class="subtitulo">
+        Comece a estudar com ferramentas criadas para sua rotina.
+    </p>
+
+
+    <div class="planos">
+
+
+        <div class="plano">
+
+            <h3>StudyGuide Essencial</h3>
+
+            <div class="preco">
+                R$ 19,00
+            </div>
+
+            <ul>
+
+                <li>Quizzes</li>
+
+                <li>Atividades escolares</li>
+
+                <li>Materiais de revisão</li>
+
+                <li>Cronograma básico</li>
+
+                <li>Exercícios de matemática</li>
+
+                <li>Atividades de memória</li>
+
+            </ul>
+
+            <button class="botao" onclick="assinar('Essencial')">
+                ASSINAR
+            </button>
+
+        </div>
+
+
+        <div class="plano premium">
+
+            <span class="tag">
+                MAIS COMPLETO
+            </span>
+
+            <h3>StudyGuide Premium</h3>
+
+            <div class="preco">
+                R$ 29,90
+            </div>
+
+            <ul>
+
+                <li>Todos os recursos do Essencial</li>
+
+                <li>IA de estudos</li>
+
+                <li>Mais quizzes e simulados</li>
+
+                <li>Plano de estudos personalizado</li>
+
+                <li>Treino de redação</li>
+
+                <li>Atividades de raciocínio</li>
+
+                <li>Revisões para provas</li>
+
+            </ul>
+
+            <button class="botao" onclick="assinar('Premium')">
+                ASSINAR PREMIUM
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <strong>StudyGuide</strong>
+
+    <p style="margin-top:10px;">
+        Seu guia para estudar melhor.
+    </p>
+
+    <p style="font-size:12px;margin-top:15px;">
+        © 2026 StudyGuide.
+    </p>
+
+</footer>
+
+
+<script>
+
+function montarPlano(){
+
+    const serie =
+        document.getElementById("serie").value;
+
+    const objetivo =
+        document.getElementById("objetivo").value;
+
+    const resultado =
+        document.getElementById("resultadoPlano");
+
+    const texto =
+        document.getElementById("textoPlano");
+
+
+    if(!serie || !objetivo){
+
+        alert("Escolha sua série e seu objetivo.");
+
+        return;
+    }
+
+
+    texto.innerHTML =
+        "Você selecionou <strong>" +
+        serie +
+        "</strong> e seu objetivo é <strong>" +
+        objetivo +
+        "</strong>.<br><br>" +
+
+        "Uma sugestão inicial é estudar em blocos de " +
+        "30 a 50 minutos, alternando matérias e incluindo " +
+        "momentos de revisão e exercícios.";
+
+    resultado.style.display="block";
+
+}
+
+
+function responderQuiz(resposta){
+
+    const resultado =
+        document.getElementById("resultadoQuiz");
+
+
+    if(resposta === 56){
+
+        resultado.innerHTML =
+            "✅ Correto! 8 × 7 = 56.";
+
+    }else{
+
+        resultado.innerHTML =
+            "❌ Não foi dessa vez. Tente novamente!";
+
+    }
+
+}
+
+
+function assinar(plano){
+
+    if(plano === "Premium"){
+
+        alert(
+            "Plano Premium selecionado: R$ 29,90/mês."
+        );
+
+    }else{
+
+        alert(
+            "Plano Essencial selecionado: R$ 19,00/mês."
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
